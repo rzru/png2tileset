@@ -1,13 +1,13 @@
 # png2tileset
 
 ![Original Tile Map](Sprite-0001.png)
-Original Tile Map
+ \- Original Tile Map
 
 ![8x8 Tileset created from the Tile Map](Sprite-0001-tileset-8x8.png)
-8x8 Tileset created from the Tile Map
+ \- 8x8 Tileset created from the Tile Map
 
 ![4x4 Tileset created from the Tile Map](Sprite-0001-tileset-4x4.png)
-4x4 Tileset created from the Tile Map
+ \- 4x4 Tileset created from the Tile Map
 
 ## Description
 
@@ -35,11 +35,11 @@ Options:
 Should I even write it?
 
 ```bash
-    cargo run
+cargo run
 
-    cargo build
+cargo build
 
-    cargo build --release
+cargo build --release
 ```
 
 ## License
