@@ -15,6 +15,8 @@ This small utility allows you to generate tilesets out of PNG images. It ignores
 
 ## Usage
 
+You want to build this with `cargo build --release` before use. After this the release version of a binary can be found in `target/release` directory.
+
 ```bash
 Converts png images (tilemaps) into png tilesets
 
