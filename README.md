@@ -1,12 +1,12 @@
 # png2tileset
 
-![Original Tile Map](Sprite-0001.png)
+![Original Tile Map](docs/Sprite-0001.png)
  \- Original Tile Map
 
-![8x8 Tileset created from the Tile Map](Sprite-0001-tileset-8x8.png)
+![8x8 Tileset created from the Tile Map](docs/Sprite-0001-tileset-8x8.png)
  \- 8x8 Tileset created from the Tile Map
 
-![4x4 Tileset created from the Tile Map](Sprite-0001-tileset-4x4.png)
+![4x4 Tileset created from the Tile Map](docs/Sprite-0001-tileset-4x4.png)
  \- 4x4 Tileset created from the Tile Map
 
 ## Description

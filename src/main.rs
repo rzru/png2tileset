@@ -126,3 +126,130 @@ fn main() {
 
     process::exit(0)
 }
+
+#[cfg(test)]
+mod tests {
+    use image::open;
+
+    use crate::{run, Args};
+    use std::env;
+    use std::fs::remove_file;
+    use std::sync::Once;
+
+    static INIT: Once = Once::new();
+
+    pub fn setup() -> () {
+        INIT.call_once(|| {
+            assert!(env::set_current_dir("./tests").is_ok());
+        });
+    }
+
+    #[test]
+    fn returns_error_if_width_is_not_multiple_of_tile_size() {
+        setup();
+
+        let args = Args {
+            output: None,
+            size: 8,
+            file: String::from("1.png"),
+        };
+
+        assert_eq!(run(&args).is_err(), true);
+    }
+
+    #[test]
+    fn returns_error_if_height_is_not_multiple_of_tile_size() {
+        setup();
+
+        let args = Args {
+            output: None,
+            size: 8,
+            file: String::from("2.png"),
+        };
+
+        assert_eq!(run(&args).is_err(), true);
+    }
+
+    #[test]
+    fn returns_ok_and_creates_correct_tileset_into_default_output_size_16() {
+        setup();
+
+        let args = Args {
+            output: None,
+            size: 16,
+            file: String::from("3.png"),
+        };
+
+        let output_name = "3-tileset-16x16.png";
+
+        assert!(run(&args).is_ok());
+        assert_eq!(
+            open(output_name).unwrap().as_bytes(),
+            open("3-assertion-output-16x16.png").unwrap().as_bytes()
+        );
+
+        assert!(remove_file(output_name).is_ok());
+    }
+
+    #[test]
+    fn returns_ok_and_creates_correct_tileset_into_default_output_size_8() {
+        setup();
+
+        let args = Args {
+            output: None,
+            size: 8,
+            file: String::from("3.png"),
+        };
+
+        let output_name = "3-tileset-8x8.png";
+
+        assert!(run(&args).is_ok());
+        assert_eq!(
+            open(output_name).unwrap().as_bytes(),
+            open("3-assertion-output-8x8.png").unwrap().as_bytes()
+        );
+
+        assert!(remove_file(output_name).is_ok());
+    }
+
+    #[test]
+    fn returns_ok_and_creates_correct_tileset_into_default_output_size_4() {
+        setup();
+
+        let args = Args {
+            output: None,
+            size: 4,
+            file: String::from("3.png"),
+        };
+
+        let output_name = "3-tileset-4x4.png";
+
+        assert!(run(&args).is_ok());
+        assert_eq!(
+            open(output_name).unwrap().as_bytes(),
+            open("3-assertion-output-4x4.png").unwrap().as_bytes()
+        );
+
+        assert!(remove_file(output_name).is_ok());
+    }
+
+    #[test]
+    fn returns_ok_and_creates_correct_tileset_into_custom_output() {
+        setup();
+
+        let output_name = "custom-tileset-name.png";
+        let args = Args {
+            output: Some(String::from(output_name)),
+            size: 4,
+            file: String::from("3.png"),
+        };
+
+        assert!(run(&args).is_ok());
+        assert_eq!(
+            open(output_name).unwrap().as_bytes(),
+            open("3-assertion-output-4x4.png").unwrap().as_bytes()
+        );
+
+        assert!(remove_file(output_name).is_ok());
+    }
+}
