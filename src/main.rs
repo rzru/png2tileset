@@ -18,7 +18,7 @@ struct Args {
     #[arg(short, long, default_value_t = 8)]
     size: u32,
 
-    /// Output file path
+    /// File path
     file: String,
 }
 
